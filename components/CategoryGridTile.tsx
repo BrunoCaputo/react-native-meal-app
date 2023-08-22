@@ -1,6 +1,21 @@
-import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  GestureResponderEvent,
+  Platform,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 
-function CategoryGridTile({ title, color }: { title: string; color: string }) {
+function CategoryGridTile({
+  title,
+  color,
+  onPress,
+}: {
+  title: string;
+  color: string;
+  onPress?: (event: GestureResponderEvent) => void;
+}) {
   return (
     <View
       style={[
@@ -14,6 +29,7 @@ function CategoryGridTile({ title, color }: { title: string; color: string }) {
           styles.button,
           pressed && Platform.OS === "ios" ? styles.buttonPressed : null,
         ]}
+        onPress={onPress}
       >
         <View
           style={[
