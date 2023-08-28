@@ -1,10 +1,4 @@
-import {
-  FlatList,
-  ListRenderItemInfo,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { FlatList, ListRenderItemInfo, StyleSheet, View } from "react-native";
 import { MEALS } from "../data/dummy-data";
 import Meal from "../models/meal";
 import MealItem from "../components/MealItem";
@@ -17,7 +11,15 @@ function MealsOverviewScreen({ route }: any) {
   });
 
   function renderMealItem({ item }: ListRenderItemInfo<Meal>) {
-    return <MealItem title={item.title} />;
+    const mealItemProps = {
+      title: item.title,
+      imageUrl: item.imageUrl,
+      affordability: item.affordability,
+      complexity: item.complexity,
+      duration: item.duration,
+    };
+
+    return <MealItem {...mealItemProps} />;
   }
 
   return (
