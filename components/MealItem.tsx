@@ -1,5 +1,5 @@
+import { useNavigation } from "@react-navigation/native";
 import {
-  GestureResponderEvent,
   Image,
   Platform,
   Pressable,
@@ -7,23 +7,36 @@ import {
   Text,
   View,
 } from "react-native";
-import Meal from "../models/meal";
+import { RootStackParamList } from "../types/navigation-param-list.type";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import MealDetails from "./MealDetails";
 
 function MealItem({
+  id,
   title,
   imageUrl,
   duration,
   complexity,
   affordability,
-  onPress,
 }: {
+  id: string;
   title: string;
   imageUrl: string;
   duration: number;
   complexity: string;
   affordability: string;
-  onPress?: (event: GestureResponderEvent) => void;
 }) {
+  const navigation =
+    useNavigation<
+      NativeStackNavigationProp<RootStackParamList, "MealDetail">
+    >();
+
+  function selectMealItemHandler() {
+    navigation.navigate("MealDetail", {
+      mealId: id,
+    });
+  }
+
   return (
     <View style={styles.mealItem}>
       <Pressable
@@ -31,20 +44,18 @@ function MealItem({
         style={({ pressed }) =>
           pressed && Platform.OS === "ios" ? styles.buttonPressed : null
         }
-        onPress={onPress}
+        onPress={selectMealItemHandler}
       >
         <View style={styles.innerContainer}>
           <View>
             <Image source={{ uri: imageUrl }} style={styles.image} />
             <Text style={styles.title}>{title}</Text>
           </View>
-          <View style={styles.details}>
-            <Text style={styles.detailItem}>{duration}m</Text>
-            <Text style={styles.detailItem}>{complexity?.toUpperCase()}</Text>
-            <Text style={styles.detailItem}>
-              {affordability?.toUpperCase()}
-            </Text>
-          </View>
+          <MealDetails
+            affordability={affordability}
+            complexity={complexity}
+            duration={duration}
+          />
         </View>
       </Pressable>
     </View>
@@ -78,16 +89,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 18,
     margin: 8,
-  },
-  details: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 8,
-  },
-  detailItem: {
-    marginHorizontal: 4,
-    fontSize: 12,
   },
   buttonPressed: {
     opacity: 0.5,

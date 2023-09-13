@@ -3,4 +3,7 @@ export type RootStackParamList = {
   MealsOverview: {
     categoryId: string;
   };
+  MealDetail: {
+    mealId: string;
+  };
 };
