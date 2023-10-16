@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import { RootStackParamList } from "../types/navigation-param-list.type";
+import { CustomRootParamList } from "../types/navigation-param-list.type";
 import { MEALS } from "../data/dummy-data";
 import MealDetails from "../components/MealDetails";
 import Subtitle from "../components/MealDetail/Subtitle";
@@ -11,7 +11,7 @@ import IconButton from "../components/IconButton";
 function MealDetailScreen({
   route,
   navigation,
-}: NativeStackScreenProps<RootStackParamList, "MealDetail">) {
+}: NativeStackScreenProps<CustomRootParamList, "MealDetail">) {
   const mealId = route.params.mealId;
 
   const selectedMeal = MEALS.find((meal) => meal.id === mealId);

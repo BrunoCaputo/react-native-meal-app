@@ -3,13 +3,13 @@ import { CATEGORIES, MEALS } from "../data/dummy-data";
 import Meal from "../models/meal";
 import MealItem from "../components/MealItem";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../types/navigation-param-list.type";
+import { CustomRootParamList } from "../types/navigation-param-list.type";
 import { useLayoutEffect } from "react";
 
 function MealsOverviewScreen({
   route,
   navigation,
-}: NativeStackScreenProps<RootStackParamList, "MealsOverview">) {
+}: NativeStackScreenProps<CustomRootParamList, "MealsOverview">) {
   const categoryId = route.params.categoryId;
 
   const displayedMeals = MEALS.filter((mealItem) => {

@@ -1,4 +1,4 @@
-export type RootStackParamList = {
+export type CustomRootParamList = {
   MealsCategories: undefined;
   MealsOverview: {
     categoryId: string;
@@ -6,4 +6,6 @@ export type RootStackParamList = {
   MealDetail: {
     mealId: string;
   };
+  Categories: undefined;
+  Favorites: undefined;
 };
