@@ -7,9 +7,9 @@ import {
   Text,
   View,
 } from "react-native";
-import { CustomRootParamList } from "../types/navigation-param-list.type";
+import { CustomRootParamList } from "../../types/navigation-param-list.type";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import MealDetails from "./MealDetails";
+import MealDetails from "../MealDetails";
 
 function MealItem({
   id,
