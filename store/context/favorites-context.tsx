@@ -1,7 +1,7 @@
 import { PropsWithChildren, createContext, useState } from "react";
-import { IFavoriteContext } from "../../models/favorites";
+import { IFavoriteStore } from "../../models/favorites";
 
-export const FavoritesContext = createContext<IFavoriteContext>({
+export const FavoritesContext = createContext<IFavoriteStore>({
   ids: [],
   addFavorite: (id: string) => {},
   removeFavorite: (id: string) => {},
@@ -20,7 +20,7 @@ function FavoritesContextProvider({ children }: PropsWithChildren<any>) {
     );
   }
 
-  const value: IFavoriteContext = {
+  const value: IFavoriteStore = {
     ids: favoriteMealIds,
     addFavorite: addFavorite,
     removeFavorite: removeFavorite,
